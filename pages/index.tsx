@@ -20,7 +20,7 @@ const Home: NextPage = () => {
     fetch(`http://localhost:3001/${ano}`)
       .then((response) => response.json())
       .then((data) => setRodada(data.flat(Infinity)[data.length - 1]))
-  }, [rodada]);
+  }, [rodada, ano]);
 
   const teste = rodada?.partidas;
   console.log(teste);
