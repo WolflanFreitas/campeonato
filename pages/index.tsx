@@ -7,26 +7,59 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Barra from '../components/Barra';
-import { useState } from 'react';
-
-interface partida {
-
-}
+import { useEffect, useState } from 'react';
+import { Partida, Rodada } from '../interface/Abstracoes';
+import Card from 'react-bootstrap/Card';
+import Form from 'react-bootstrap/Form';
 
 const Home: NextPage = () => {
-  const [partidas, setPartidas] = useState<partida>([]);
+  const [partidas, setPartidas] = useState<Rodada>();
+
+  useEffect(() => {
+    fetch('http://localhost:3001/2003')
+      .then((response) => response.json())
+      .then((data) => setPartidas(data.flat(Infinity)[data.length - 1]))
+  }, []);
+
+  const teste = partidas?.partidas;
+  console.log(teste);
   return (
     <>
       <Head>
         <title>Campeonato</title>
-        <meta name="description" content="Aplicação que mostra o placar do campeonato brasileiro de 2015" />
+        <meta name="description" content="Aplicação que mostra o placar dos campeonatos brasileiro" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Barra></Barra>
+      <Barra />
       <Container>
         <Row className='mt-2'>
           <Col xl={12}>
-            <Button>Teste</Button>
+            <Card>
+              <Card.Header className='bg-primary text-white'>
+                <Row className='justify-content-center'>
+                  <Col xl={'auto'}>
+                    <Form.Select aria-label="Ano do campeonato">
+                      <option value="2003">2003</option>
+                      <option value="2004">2004</option>
+                      <option value="2005">2005</option>
+                      <option value="2006">2006</option>
+                      <option value="2007">2007</option>
+                      <option value="2008">2008</option>
+                      <option value="2009">2009</option>
+                      <option value="2010">2010</option>
+                      <option value="2011">2011</option>
+                      <option value="2012">2012</option>
+                      <option value="2013">2013</option>
+                      <option value="2014">2014</option>
+                      <option value="2015">2015</option>
+                    </Form.Select>
+                  </Col>
+                </Row>
+              </Card.Header>
+              <Card.Body>
+                Algo
+              </Card.Body>
+            </Card>
           </Col>
         </Row>
       </Container>
