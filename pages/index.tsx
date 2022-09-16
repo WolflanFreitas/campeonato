@@ -6,9 +6,15 @@ import { Button } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Barra from '../components/barra';
+import Barra from '../components/Barra';
+import { useState } from 'react';
+
+interface partida {
+
+}
 
 const Home: NextPage = () => {
+  const [partidas, setPartidas] = useState<partida>([]);
   return (
     <>
       <Head>
