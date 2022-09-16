@@ -13,15 +13,16 @@ import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 
 const Home: NextPage = () => {
-  const [partidas, setPartidas] = useState<Rodada>();
+  const [rodada, setRodada] = useState<Rodada>();
+  const [ano, setAno] = useState('2003');
 
   useEffect(() => {
-    fetch('http://localhost:3001/2003')
+    fetch(`http://localhost:3001/${ano}`)
       .then((response) => response.json())
-      .then((data) => setPartidas(data.flat(Infinity)[data.length - 1]))
-  }, []);
+      .then((data) => setRodada(data.flat(Infinity)[data.length - 1]))
+  }, [rodada]);
 
-  const teste = partidas?.partidas;
+  const teste = rodada?.partidas;
   console.log(teste);
   return (
     <>
@@ -38,7 +39,7 @@ const Home: NextPage = () => {
               <Card.Header className='bg-primary text-white'>
                 <Row className='justify-content-center'>
                   <Col xl={'auto'}>
-                    <Form.Select aria-label="Ano do campeonato">
+                    <Form.Select onChange={(event) => setAno(event.target.value)} aria-label="Ano do campeonato">
                       <option value="2003">2003</option>
                       <option value="2004">2004</option>
                       <option value="2005">2005</option>
