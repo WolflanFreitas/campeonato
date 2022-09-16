@@ -10,7 +10,7 @@ export default function Barra() {
                 <Container>
                     <Navbar.Brand href="/" className='d-flex align-content-center'>
                         <Image src="/bola.png" alt={'bola'} width={30} height={30}></Image>
-                        Campeonato Brasileiro 2015
+                        Campeonato Brasileiro
                     </Navbar.Brand>
                 </Container>
             </Navbar>
